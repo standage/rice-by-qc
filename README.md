@@ -91,13 +91,14 @@ which samtools
 which java
 which R
 
+bwa index osat_chr2_34907172-34952509.fa
 mkdir -p insert-size-est
 cd insert-size-est
 
 for i in {1..8}
 do
   mkdir s${i}
-  bwa mem -t 16 osat_chr2_34907172-34952509.fa ../diginorm/s${i}-diginorm-1.fq.gz ../diginorm/s${i}-diginorm-2.fq.gz \
+  bwa mem -t 16 ../osat_chr2_34907172-34952509.fa ../diginorm/s${i}-diginorm-1.fq.gz ../diginorm/s${i}-diginorm-2.fq.gz \
       | samtools view -bS -F0x4 - \
       | samtools sort -o - bogus${i} \
       > s${i}/s${i}.bam
